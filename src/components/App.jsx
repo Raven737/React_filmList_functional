@@ -14,8 +14,10 @@ const App_class = () => {
     const [releaseData, setReleaseData] = useState(undefined);
     const [isOpenPopUp, setIsOpenPopUp] = useState(false);
 
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
+    const MAX_PAGE = 500;
+
     useEffect(() => {
-        let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
         fetch(url)
             .then((response) => response.json())
             .then((json) => {
@@ -29,7 +31,6 @@ const App_class = () => {
     }, [page]);
 
     useEffect(() => {
-        let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
         fetch(url)
             .then((response) => response.json())
             .then((json) => {
@@ -41,8 +42,6 @@ const App_class = () => {
                 setIsLoading(false);
             });
     }, [page, films]);
-
-    const MAX_PAGE = 500;
 
     const pageStep = (step) => {
         const newPage = Number(page + step);

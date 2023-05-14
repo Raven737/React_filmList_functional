@@ -19,7 +19,7 @@ const Films = ({
                     return (
                         <div className="filmWrap" key={film.id}>
                             <hr />
-                            <h2 className="filmTitle">{film.title}</h2>
+                            <h2 className="text-center">{film.title}</h2>
                             <RateSwitch
                                 rating={film.popularity}
                                 lightTheme={lightTheme}

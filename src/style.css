@@ -1,12 +1,12 @@
-.headline {
+/* .headline {
     font-weight: bold;
     text-transform: uppercase;
-}
-.headline,
+} */
+/* .headline,
 .pageNumber,
 .filmTitle {
     text-align: center;
-}
+} */
 .container {
     max-width: 1400px;
     margin: auto;
