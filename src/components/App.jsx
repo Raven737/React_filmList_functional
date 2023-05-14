@@ -1,107 +1,96 @@
-import React from "react";
-import ThemeContext from "./Context";
+import React, { useState, useEffect } from "react";
 import Title from "./Title";
 import Pagination from "./Pagination";
 import Films from "./Films";
 import Theme from "./Theme";
 import PopUp from "./PopUp";
 
-class App_class extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            films: null,
-            page: 1,
-            isLoading: true,
-            error: null,
-            lightTheme: true,
-            releaseData: undefined,
-            isOpenPopUp: false,
-        };
-    }
+const App_class = () => {
+    const [films, setFilms] = useState(null);
+    const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [lightTheme, setLightTheme] = useState(true);
+    const [releaseData, setReleaseData] = useState(undefined);
+    const [isOpenPopUp, setIsOpenPopUp] = useState(false);
 
-    componentDidMount() {
-        let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
+    useEffect(() => {
+        let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
         fetch(url)
             .then((response) => response.json())
             .then((json) => {
-                this.setState({ films: json, isLoading: false });
+                setFilms(json);
+                setIsLoading(false);
             })
             .catch((error) => {
-                this.setState({ error: error, isLoading: false });
+                setError(error);
+                setIsLoading(false);
             });
-    }
+    }, [page]);
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.page !== this.state.page) {
-            let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
-            fetch(url)
-                .then((response) => response.json())
-                .then((json) => {
-                    this.setState({ films: json, isLoading: false });
-                })
-                .catch((error) => {
-                    this.setState({ error: error, isLoading: false });
-                });
-        }
-    }
+    useEffect(() => {
+        let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
+        fetch(url)
+            .then((response) => response.json())
+            .then((json) => {
+                setFilms(json);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setIsLoading(false);
+            });
+    }, [page, films]);
 
-    MAX_PAGE = 500;
+    const MAX_PAGE = 500;
 
-    pageStep = (step) => {
-        const newPage = Number(this.state.page + step);
-        if (newPage < 1 || newPage > this.MAX_PAGE) return null;
-        this.setState({ page: newPage });
+    const pageStep = (step) => {
+        const newPage = Number(page + step);
+        if (newPage < 1 || newPage > MAX_PAGE) return null;
+        setPage(newPage);
     };
 
-    setPage = (num) => {
+    const setPageNum = (num) => {
         if (!num) return null;
-        this.setState({ page: Number(num) });
+        setPage(Number(num));
     };
 
-    toggle = () => {
-        this.setState({ lightTheme: !this.state.lightTheme });
+    const toggle = () => {
+        setLightTheme(!lightTheme);
     };
 
-    getReleaseDate = (date) => {
-        this.setState({ releaseDate: date });
+    const getReleaseDate = (date) => {
+        setReleaseData(date);
     };
 
-    togglePopUp = () => {
-        this.setState({ isOpenPopUp: !this.state.isOpenPopUp });
+    const togglePopUp = () => {
+        setIsOpenPopUp(!isOpenPopUp);
     };
 
-    render() {
-        return (
-            <ThemeContext.Provider value={this.state}>
-                <div
-                    className={
-                        this.state.lightTheme ? "light-theme" : "dark-theme"
-                    }
-                >
-                    <Title />
-                    <Theme toggle={this.toggle} />
-                    <Pagination
-                        page={this.state.page}
-                        max_page={this.MAX_PAGE}
-                        pageStep={this.pageStep}
-                        setPage={this.setPage}
-                    />
-                    <Films
-                        page={this.state.page}
-                        getReleaseDate={this.getReleaseDate}
-                        togglePopUp={this.togglePopUp}
-                    />
-                    {this.state.isOpenPopUp && (
-                        <PopUp
-                            date={this.state.releaseDate}
-                            togglePopUp={this.togglePopUp}
-                        />
-                    )}
-                </div>
-            </ThemeContext.Provider>
-        );
-    }
-}
+    return (
+        <div className={lightTheme ? "light-theme" : "dark-theme"}>
+            <Title lightTheme={lightTheme} page={page} />
+            <Theme toggle={toggle} lightTheme={lightTheme} />
+            <Pagination
+                page={page}
+                max_page={MAX_PAGE}
+                pageStep={pageStep}
+                setPageNum={setPageNum}
+                lightTheme={lightTheme}
+            />
+            <Films
+                lightTheme={lightTheme}
+                error={error}
+                isLoading={isLoading}
+                films={films}
+                getReleaseDate={getReleaseDate}
+                togglePopUp={togglePopUp}
+            />
+            {isOpenPopUp && (
+                <PopUp date={releaseData} togglePopUp={togglePopUp} />
+            )}
+        </div>
+    );
+};
 
 export default App_class;
