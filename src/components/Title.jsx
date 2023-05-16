@@ -1,10 +1,6 @@
 const Title = ({ lightTheme, page }) => {
     return (
-        <div
-            className={`filmHeader ${
-                lightTheme ? "light-theme" : "dark-theme"
-            }`}
-        >
+        <div>
             <h1 className="text-center text-uppercase fw-bold">
                 list of movies
             </h1>

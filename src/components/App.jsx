@@ -67,7 +67,11 @@ const App_class = () => {
     };
 
     return (
-        <div className={lightTheme ? "light-theme" : "dark-theme"}>
+        <div
+            className={`container ${
+                lightTheme ? "bg-light text-black" : "bg-dark text-white"
+            }`}
+        >
             <Title lightTheme={lightTheme} page={page} />
             <Theme toggle={toggle} lightTheme={lightTheme} />
             <Pagination

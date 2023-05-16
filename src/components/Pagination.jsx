@@ -17,11 +17,7 @@ const Pagination = ({ max_page, setPageNum, lightTheme, pageStep }) => {
     };
 
     return (
-        <div
-            className={`d-flex justify-content-center ${
-                lightTheme ? "light-theme" : "dark-theme"
-            }`}
-        >
+        <div className="d-flex justify-content-center">
             <div className="d-sm-flex">
                 <Button
                     className="me-1 mb-1"

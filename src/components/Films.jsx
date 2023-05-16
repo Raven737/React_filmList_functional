@@ -9,24 +9,24 @@ const Films = ({
     togglePopUp,
 }) => {
     return (
-        <div
-            className={`container ${lightTheme ? "light-theme" : "dark-theme"}`}
-        >
+        <div className="d-md-flex flex-wrap pb-5">
             {error ? (
                 <div>Error: {error.message}</div>
             ) : !isLoading ? (
                 films.results.map((film) => {
                     return (
-                        <div className="filmWrap" key={film.id}>
+                        <div className="col-12 col-md-6" key={film.id}>
                             <hr />
-                            <h2 className="text-center">{film.title}</h2>
+                            <div className="text-center fs-6 fw-bold">
+                                {film.title}
+                            </div>
                             <RateSwitch
                                 rating={film.popularity}
                                 lightTheme={lightTheme}
                             />
                             <div className="d-md-flex">
                                 <img
-                                    className="w-100px"
+                                    className="col-12 col-md-6 h-100"
                                     onClick={() => {
                                         getReleaseDate(film.release_date);
                                         togglePopUp();
@@ -34,7 +34,9 @@ const Films = ({
                                     src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
                                     alt={film.title}
                                 />
-                                <p className="filmOverview">{film.overview}</p>
+                                <p className="m-0 ps-2 pe-2 fs-6">
+                                    {film.overview}
+                                </p>
                             </div>
                         </div>
                     );

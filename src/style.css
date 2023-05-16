@@ -1,16 +1,6 @@
-/* .headline {
-    font-weight: bold;
-    text-transform: uppercase;
-} */
-/* .headline,
-.pageNumber,
-.filmTitle {
-    text-align: center;
-} */
 .container {
     max-width: 1400px;
     margin: auto;
-    background-color: lightcoral;
 }
 .rating {
     display: inline-block;
@@ -20,22 +10,6 @@
 #sun,
 #moon {
     margin-left: 10px;
-}
-.light-theme {
-    background-color: #eeeeee;
-    color: #000;
-}
-.dark-theme {
-    background-color: #222;
-    color: #fff;
-}
-.filmWrap {
-    position: relative;
-}
-.filmOverview {
-    margin: 0;
-    padding: 0 10px 0;
-    font-size: 18px;
 }
 .overlay {
     display: flex;
