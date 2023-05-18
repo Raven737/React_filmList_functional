@@ -8,7 +8,7 @@ const Theme = ({ lightTheme, toggle }) => {
     return (
         <div className="d-flex justify-content-end mb-2">
             <Button
-                size="md-sm"
+                // size="md-sm"
                 variant={lightTheme ? "info" : "secondary"}
                 onClick={toggleIcons}
             >
@@ -17,7 +17,7 @@ const Theme = ({ lightTheme, toggle }) => {
                         <span>Light</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            id="sun"
+                            className="ms-2"
                             width="32"
                             height="32"
                             viewBox="0 0 32 32"
@@ -52,7 +52,7 @@ const Theme = ({ lightTheme, toggle }) => {
                         <span>Dark</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            id="moon"
+                            className="ms-2"
                             width="32"
                             height="32"
                             viewBox="0 0 24 24"

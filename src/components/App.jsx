@@ -12,6 +12,7 @@ const App_class = () => {
     const [error, setError] = useState(null);
     const [lightTheme, setLightTheme] = useState(true);
     const [releaseData, setReleaseData] = useState(undefined);
+    const [title, setTitle] = useState(undefined);
     const [isOpenPopUp, setIsOpenPopUp] = useState(false);
 
     let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
@@ -62,13 +63,17 @@ const App_class = () => {
         setReleaseData(date);
     };
 
+    const getTitle = (title) => {
+        setTitle(title);
+    };
+
     const togglePopUp = () => {
         setIsOpenPopUp(!isOpenPopUp);
     };
 
     return (
         <div
-            className={`container ${
+            className={`col-xxl-10 m-auto ${
                 lightTheme ? "bg-light text-black" : "bg-dark text-white"
             }`}
         >
@@ -87,10 +92,15 @@ const App_class = () => {
                 isLoading={isLoading}
                 films={films}
                 getReleaseDate={getReleaseDate}
+                getTitle={getTitle}
                 togglePopUp={togglePopUp}
             />
             {isOpenPopUp && (
-                <PopUp date={releaseData} togglePopUp={togglePopUp} />
+                <PopUp
+                    date={releaseData}
+                    title={title}
+                    togglePopUp={togglePopUp}
+                />
             )}
         </div>
     );

@@ -13,7 +13,7 @@ const RateSwitch = ({ lightTheme, rating }) => {
             >
                 {isShowRate ? "Hide Rate" : "Show Rate"}
             </Button>
-            {isShowRate && <span className="rating">{rating}</span>}
+            {isShowRate && <span className="ms-2 fw-bold">{rating}</span>}
         </div>
     );
 };

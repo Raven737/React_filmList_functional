@@ -6,6 +6,7 @@ const Films = ({
     isLoading,
     films,
     getReleaseDate,
+    getTitle,
     togglePopUp,
 }) => {
     return (
@@ -29,6 +30,7 @@ const Films = ({
                                     className="col-12 col-md-6 h-100"
                                     onClick={() => {
                                         getReleaseDate(film.release_date);
+                                        getTitle(film.title);
                                         togglePopUp();
                                     }}
                                     src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
