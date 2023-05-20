@@ -8,7 +8,6 @@ const Theme = ({ lightTheme, toggle }) => {
     return (
         <div className="d-flex justify-content-end mb-2">
             <Button
-                // size="md-sm"
                 variant={lightTheme ? "info" : "secondary"}
                 onClick={toggleIcons}
             >

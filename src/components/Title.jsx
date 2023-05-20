@@ -1,4 +1,4 @@
-const Title = ({ lightTheme, page }) => {
+const Title = ({ page }) => {
     return (
         <div>
             <h1 className="text-center text-uppercase fw-bold">
