@@ -1,4 +1,4 @@
-const PopUp = ({ lightTheme, togglePopUp, date, title }) => {
+const PopUp = ({ lightTheme, togglePopUp, title, date  }) => {
     return (
         <div className="position-fixed top-0 start-0 bottom-0 end-0 d-flex bg-secondary bg-opacity-75">
             <div

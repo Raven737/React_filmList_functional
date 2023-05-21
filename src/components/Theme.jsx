@@ -1,6 +1,10 @@
 import Button from "react-bootstrap/Button";
+import { useContext } from "react";
+import MyContext from "./MyContext";
 
-const Theme = ({ lightTheme, toggle }) => {
+const Theme = () => {
+    const { lightTheme, toggle } = useContext(MyContext);
+
     const toggleIcons = () => {
         toggle();
     };

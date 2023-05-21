@@ -1,4 +1,8 @@
-const Title = ({ page }) => {
+import { useContext } from "react";
+import MyContext from "./MyContext";
+
+const Title = () => {
+    const { page } = useContext(MyContext);
     return (
         <div>
             <h1 className="text-center text-uppercase fw-bold">

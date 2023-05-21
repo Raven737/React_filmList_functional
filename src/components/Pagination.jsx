@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, FormControl, Button } from "react-bootstrap";
+import MyContext from "./MyContext";
 
-const Pagination = ({ max_page, setPageNum, lightTheme, pageStep }) => {
+const Pagination = () => {
     const [inputValue, setInputValue] = useState("");
+
+    const { max_page, setPageNum, lightTheme, pageStep } =
+        useContext(MyContext);
 
     const handleInputValue = (event) => {
         let newInputValue = event.target.value;

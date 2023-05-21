@@ -1,1 +1,1 @@
-# React_filmList_functional
+"npm run deploy" - для запису змін з гілки "main" до гілки "gh-pages".

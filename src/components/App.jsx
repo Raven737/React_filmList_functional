@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import MyContext from "./MyContext";
 import Title from "./Title";
 import Pagination from "./Pagination";
-import Films from "./Films";
 import Theme from "./Theme";
+import Films from "./Films";
 import PopUp from "./PopUp";
 
 const App_class = () => {
@@ -59,38 +60,49 @@ const App_class = () => {
     };
 
     return (
-        <div
-            className={`col-xxl-10 m-auto ${
-                lightTheme ? "bg-light text-black" : "bg-dark text-white"
-            }`}
+        <MyContext.Provider
+            value={{
+                films: films,
+                page: page,
+                isLoading: isLoading,
+                error: error,
+                lightTheme: lightTheme,
+                releaseData: releaseData,
+                title: title,
+                isOpenPopUp: isOpenPopUp,
+                max_page: MAX_PAGE,
+                toggle: toggle,
+                pageStep: pageStep,
+                setPageNum: setPageNum,
+            }}
         >
-            <Title lightTheme={lightTheme} page={page} />
-            <Theme toggle={toggle} lightTheme={lightTheme} />
-            <Pagination
-                page={page}
-                max_page={MAX_PAGE}
-                pageStep={pageStep}
-                setPageNum={setPageNum}
-                lightTheme={lightTheme}
-            />
-            <Films
-                lightTheme={lightTheme}
-                error={error}
-                isLoading={isLoading}
-                films={films}
-                getReleaseDate={getReleaseDate}
-                getTitle={getTitle}
-                togglePopUp={togglePopUp}
-            />
-            {isOpenPopUp && (
-                <PopUp
+            <div
+                className={`col-xxl-10 m-auto ${
+                    lightTheme ? "bg-light text-black" : "bg-dark text-white"
+                }`}
+            >
+                <Title />
+                <Theme />
+                <Pagination />
+                <Films
                     lightTheme={lightTheme}
-                    date={releaseData}
-                    title={title}
+                    error={error}
+                    isLoading={isLoading}
+                    films={films}
+                    getReleaseDate={getReleaseDate}
+                    getTitle={getTitle}
                     togglePopUp={togglePopUp}
                 />
-            )}
-        </div>
+                {isOpenPopUp && (
+                    <PopUp
+                        lightTheme={lightTheme}
+                        togglePopUp={togglePopUp}
+                        title={title}
+                        date={releaseData}
+                    />
+                )}
+            </div>
+        </MyContext.Provider>
     );
 };
 
